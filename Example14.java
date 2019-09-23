@@ -9,24 +9,13 @@ class Cat implements Animal{
   System.out.println("猫睡觉······");
  } 
 }
-class Dog implements Animal {
-  public void shout () {
-      System.out.println("汪汪······");
- }
-}
-public class Example15{
+public class Example14{
    public  static  void  main (String [] args){
-   Dog dog=new Dog();
-   animalShout(dog);
+   Cat cat=new Cat();
+   animalShout(cat);
   }
   public  static void  animalShout (Animal animal){
-      if (animal instanceof Cat){
      Cat cat =(Cat)  animal;
     cat.shout();
      cat.sleep();
-  }
-   else{
-    System.out.println("this animal is not a cat");
- }
-}
 }
