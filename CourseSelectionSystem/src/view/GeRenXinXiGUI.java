@@ -1,8 +1,8 @@
 package view;
 
 import controller.GeRenXinXiWindowListener;
-import database.College;
-import database.Student;
+import entity.College;
+import entity.Student;
 
 import javax.swing.*;
 import java.awt.*;

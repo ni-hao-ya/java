@@ -1,6 +1,6 @@
 package controller;
 
-import database.Course;
+import entity.Course;
 import userService.CourseService;
 
 import javax.swing.*;

@@ -1,7 +1,7 @@
 package view;
 
 import controller.RegisterWindowListener;
-import database.College;
+import entity.College;
 
 import javax.swing.*;
 import java.awt.*;

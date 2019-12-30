@@ -1,6 +1,6 @@
 package controller;
 
-import database.Student;
+import entity.Student;
 import userService.StudentService;
 
 import javax.swing.*;

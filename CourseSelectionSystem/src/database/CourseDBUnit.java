@@ -1,5 +1,7 @@
 package database;
 
+import entity.Course;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -8,19 +10,19 @@ import java.util.HashMap;
 
 public class CourseDBUnit {
 	private static CourseDBUnit instance=null;
-    private HashMap<String,Course> courses= new HashMap<String,Course>();
+    private HashMap<String, Course> courses= new HashMap<String,Course>();
     private CourseDBUnit()throws Exception{
 //        Course s = new Course();
-//        s.setName("Java");
-//        s.setTeacher("º÷Œ∞∑Â");
-//        s.setSelectedNum(59);
-//        s.setLimitSelectionNum(60);
-//        courses.put(s.getName(),s);
-//        FileOutputStream fos = new FileOutputStream("CourseInformation.txt");
-//        ObjectOutputStream oos = new ObjectOutputStream(fos);
-//        oos.writeObject(courses);
-//        oos.close();
-//        fos.close();
+////        s.setName("Java");
+////        s.setTeacher("º÷Œ∞∑Â");
+////        s.setSelectedNum(59);
+////        s.setLimitSelectionNum(60);
+////        courses.put(s.getName(),s);
+////        FileOutputStream fos = new FileOutputStream("CourseInformation.txt");
+////        ObjectOutputStream oos = new ObjectOutputStream(fos);
+////        oos.writeObject(courses);
+////        oos.close();
+////        fos.close();
         FileInputStream fis = new FileInputStream("CourseInformation.txt");
         ObjectInputStream ois = new ObjectInputStream(fis);
         courses = (HashMap<String ,Course>)ois.readObject();

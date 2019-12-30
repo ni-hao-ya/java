@@ -1,5 +1,7 @@
 package database;
 
+import entity.Student;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -8,7 +10,7 @@ import java.util.HashMap;
 
 public class StudentDBUnit {
     private static StudentDBUnit instance=null;
-    private HashMap<String ,Student> users= new HashMap<String,Student>();
+    private HashMap<String , Student> users= new HashMap<String,Student>();
     private StudentDBUnit()throws Exception{
 //        Student s = new Student();
 //        s.setAccount("184805071");

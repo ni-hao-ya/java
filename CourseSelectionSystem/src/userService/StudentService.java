@@ -1,7 +1,7 @@
 package userService;
 
 
-import database.Student;
+import entity.Student;
 import database.StudentDBUnit;
 
 import java.io.Serializable;

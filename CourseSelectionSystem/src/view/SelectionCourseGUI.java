@@ -1,8 +1,8 @@
 package view;
 
 import controller.SelectionCourseWindowListener;
-import database.Course;
-import database.Student;
+import entity.Course;
+import entity.Student;
 import userService.CourseService;
 
 import javax.swing.*;

@@ -1,7 +1,7 @@
 package view;
 
-import database.Course;
-import database.Student;
+import entity.Course;
+import entity.Student;
 import controller.tuiXuanCourseWindowListener;
 
 import javax.swing.*;

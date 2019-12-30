@@ -1,8 +1,8 @@
 package userService;
 
-import database.Course;
+import entity.Course;
 import database.CourseDBUnit;
-import database.Student;
+import entity.Student;
 import database.StudentDBUnit;
 
 import java.util.HashMap;
@@ -63,6 +63,16 @@ public class CourseService {
     public void xuanKe(Student student,Course course){//Ñ¡¿Î²Ù×÷
         this.student = studentDBUnit.getUser(student.getAccount());
         this.student.addCourse(course);
+        HashMap users= studentDBUnit.getUsers();
+        Set keySet = users.keySet();
+        Iterator it = keySet.iterator();
+        while(it.hasNext()){
+            Object key = it.next();
+            this.student = (Student) users.get(key);
+            if(this.student.getCourses().get(course.getName())!=null&&student.getName().equals(this.student.getName())==false){
+                this.student.getCourses().get(course.getName()).setSelectedNum(this.student.getCourses().get(course.getName()).getSelectedNum()+1);
+            }
+        }
         courseDBUnit.getCourse(course.getName()).setSelectedNum(courseDBUnit.getCourse(course.getName()).getSelectedNum()+1);
         try {
             studentDBUnit.setUsers();
@@ -91,11 +101,27 @@ public class CourseService {
         }
     }
     public void addCourse(Course course){
+        HashMap users= studentDBUnit.getUsers();
+        Set keySet = users.keySet();
+        Iterator it = keySet.iterator();
+        while(it.hasNext()){
+            Object key = it.next();
+            this.student = (Student) users.get(key);
+            if(this.student.getCourses().get(course.getName())!=null){
+                this.student.getCourses().get(course.getName()).setTeacher(course.getTeacher());
+                this.student.getCourses().get(course.getName()).setLimitSelectionNum(course.getLimitSelectionNum());
+            }
+        }
         try {
-            courseDBUnit.addCourse(course);
+            studentDBUnit.setUsers();
+            if(courseDBUnit.getCourse(course.getName())==null)courseDBUnit.addCourse(course);
+            else {
+                courseDBUnit.getCourse(course.getName()).setTeacher(course.getTeacher());
+                courseDBUnit.getCourse(course.getName()).setLimitSelectionNum(course.getLimitSelectionNum());
+                courseDBUnit.setCourses();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }

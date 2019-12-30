@@ -1,7 +1,7 @@
 package view;
 
 import controller.CourseGuanLiWindowListener;
-import database.Course;
+import entity.Course;
 import userService.CourseService;
 
 import javax.swing.*;

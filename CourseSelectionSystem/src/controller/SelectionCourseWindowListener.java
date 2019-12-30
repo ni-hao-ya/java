@@ -1,7 +1,7 @@
 package controller;
 
 
-import database.Student;
+import entity.Student;
 import userService.CourseService;
 import view.GeRenXinXiGUI;
 import view.tuiXuanCourseGUI;
