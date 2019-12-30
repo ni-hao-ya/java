@@ -1,7 +1,10 @@
 package controller;
 
+import database.Student;
 import userService.StudentService;
 import view.RegisterGUI;
+import view.SelectionCourseGUI;
+import view.GuanLiYuanLoginGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,23 +13,26 @@ import java.awt.event.ActionListener;
 import java.lang.String;
 
 public class LoginWindowListener {
+    //登录界面按钮监听器
     private StudentService ss = new StudentService();
     final RegisterGUI registerGUI=new RegisterGUI();
+    private Student student = new Student();
 
-    public LoginWindowListener(JFrame frame1,JTextField textField,JPasswordField passwdField,JButton LoginBt,JButton ExitBt,JButton RegisterBt){
+    public LoginWindowListener(JFrame frame1,JTextField textField,JPasswordField passwdField,JButton LoginBt,JButton ExitBt,JButton RegisterBt,JButton GuanLiYuanBt){
         LoginBt.addActionListener(new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 String s =  ss.login(textField.getText(),new String (passwdField.getPassword()));
-                JDialog jDialog = new JDialog(frame1,"绯荤粺鎻愮ず!");
+                JDialog jDialog = new JDialog(frame1,"系统提示!");
                 JLabel l = new JLabel(s);
-                l.setFont(new Font("寰蒋闆呴粦",Font.BOLD,12));
-                JButton trueBt = new JButton("纭畾");
+                l.setFont(new Font("微软雅黑",Font.BOLD,12));
+                JButton trueBt = new JButton("确定");
                 trueBt.setBackground(Color.orange);
                 trueBt.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         jDialog.dispose();
-                        if(s.equals("鐧诲綍鎴愬姛")){
-                            //璋冪敤閫夎鐣岄潰
+                        if(s.equals("登录成功")){
+                            //调用选课界面
+                            new SelectionCourseGUI(frame1,ss.getStudent(textField.getText()));
                         }
                     }
                 });
@@ -48,7 +54,12 @@ public class LoginWindowListener {
             public void actionPerformed(ActionEvent e) {
                 frame1.setVisible(false);
                 registerGUI.createRegisterGUI(frame1);
-
+            }
+        });
+        GuanLiYuanBt.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame1.setVisible(false);
+                new GuanLiYuanLoginGUI(frame1);
             }
         });
     }

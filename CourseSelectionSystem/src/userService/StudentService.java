@@ -1,36 +1,62 @@
 package userService;
 
+
 import database.Student;
 import database.StudentDBUnit;
 
 import java.io.Serializable;
 
 public class StudentService implements Serializable {
+    //Ñ§Éú·şÎñ
     private static StudentDBUnit studentDBUnit = StudentDBUnit.getInstance();
     private Student student;
-    public String login(String account,String password){
+    public String login(String account,String password){//µÇÂ¼²Ù×÷
         student = studentDBUnit.getUser(account);
         if(student!=null){
             if(account.equals(student.getAccount())&&password.equals(student.getPassword())){
-                return "ç™»å½•æˆåŠŸ";
+                return "µÇÂ¼³É¹¦";
             }
-            return "å¯†ç æˆ–è´¦å·é”™è¯¯";
+            return "ÃÜÂë»òÕËºÅ´íÎó";
         }
-        else return "é”™è¯¯ï¼Œæœªæ‰¾åˆ°è¯¥è´¦å·";
+        else return "´íÎó£¬Î´ÕÒµ½¸ÃÕËºÅ";
     }
-    public void register(String account,String password){
-        student = new Student();
-        student.setAccount(account);
-        student.setPassword(password);
-        student.setSex("ç”·");
-        student.setDepartment("è½¯ä»¶å­¦é™¢");
-        student.setName("ç›è¡ŒåŠ¨");
+    public void register(Student student){//×¢²á²Ù×÷
         try {
             studentDBUnit.addUser(student);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        System.out.println("æ³¨å†ŒæˆåŠŸï¼");
+        System.out.println("×¢²á³É¹¦£¡");
     }
+    public String panDuanAccount(String account){//ÓÃÓÚ×¢²áÊ±ÅĞ¶ÏÑ§ºÅ
+        student = studentDBUnit.getUser(account);
+        if(student!=null)return "ÕËºÅÒÑ´æÔÚ";
+        if(account.length()!=9){
+            return "·Ç·¨Ñ§ºÅ";
+        } else{
+            char [] chars = account.toCharArray();
+            for(int i = 0;i<account.length();i++){
+                if(chars[i]>'9'||chars[i]<'0'){
+                    return "³öÏÖ·Ç·¨×Ö·û";
+                }
+            }
+        }
+        return "ºÏ¸ñ";
+    }
+    public Student getStudent(String account){
+        return studentDBUnit.getUser(account);
+    }
+    public void xiuGaiGeRenXinXi(Student student){//ĞŞ¸Ä¸öÈËĞÅÏ¢
+        this.student = studentDBUnit.getUser(student.getAccount());
+        this.student.setName(student.getName());
+        this.student.setPassword(student.getPassword());
+        this.student.setDepartment(student.getDepartment());
+        this.student.setSex(student.getSex());
+        try {
+            studentDBUnit.setUsers();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

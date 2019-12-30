@@ -1,14 +1,16 @@
 package database;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class Student implements Serializable {
-    //æ­¤ç±»ä¸ºå•çº¯çš„å­¦ç”Ÿä¿¡æ¯ç±»
-    private String name=null;//å§“å
-    private String account=null;//å­¦å·
-    private String sex=null;//æ€§åˆ«
-    private String password=null;//å¯†ç 
-    private String department=null;//å­¦é™¢
+    //´ËÀàÎªµ¥´¿µÄÑ§ÉúĞÅÏ¢Àà
+    private String name=null;//ĞÕÃû
+    private String account=null;//Ñ§ºÅ
+    private String sex=null;//ĞÔ±ğ
+    private String password=null;//ÃÜÂë
+    private String department=null;//Ñ§Ôº
+    private HashMap<String,Course> courses = new HashMap<String,Course>();//ÒÑÑ¡¿Î³Ì
     public String getName() {
         return this.name;
     }
@@ -38,5 +40,16 @@ public class Student implements Serializable {
     }
     public String getDepartment() {
         return this.department;
+    }
+    public void addCourse(Course course){
+        course.setSelectedNum(course.getSelectedNum()+1);
+        this.courses.put(course.getName(),course);
+    }
+    public void decreaseCourse(Course course){
+        course.setSelectedNum(course.getSelectedNum()-1);
+        this.courses.remove(course.getName());
+    }
+    public HashMap<String,Course> getCourses(){
+        return this.courses;
     }
 }

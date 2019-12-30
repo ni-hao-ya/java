@@ -10,7 +10,13 @@ public class StudentDBUnit {
     private static StudentDBUnit instance=null;
     private HashMap<String ,Student> users= new HashMap<String,Student>();
     private StudentDBUnit()throws Exception{
-//        users.put("137825265",new Student());
+//        Student s = new Student();
+//        s.setAccount("184805071");
+//        s.setPassword("123456");
+//        s.setSex("男");
+//        s.setName("闫兴东");
+//        s.setDepartment("软件学院");
+//        users.put("184805071",s);
 //        FileOutputStream fos = new FileOutputStream("StudentInformation.txt");
 //        ObjectOutputStream oos = new ObjectOutputStream(fos);
 //        oos.writeObject(users);
@@ -22,11 +28,18 @@ public class StudentDBUnit {
         fis.close();
         ois.close();
     }
-//    public HashMap<String ,Student> getUsers(){
-//        return users;
-//    }
+    public HashMap<String ,Student> getUsers(){
+        return users;
+    }
     public void addUser(Student student)throws Exception{
         users.put(student.getAccount(),student);
+        FileOutputStream fos = new FileOutputStream("StudentInformation.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(users);
+        oos.close();
+        fos.close();
+    }
+    public void setUsers()throws Exception{
         FileOutputStream fos = new FileOutputStream("StudentInformation.txt");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(users);
